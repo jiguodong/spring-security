@@ -41,8 +41,13 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //自定义的图形验证过滤器
         ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
+        //添加登陆错误handler
         validateCodeFilter.setAuthenticationFailureHandler(authenticationFailureHandle);
+        validateCodeFilter.setSecurityProperties(securityProperties);
+        validateCodeFilter.afterPropertiesSet();
+
         http.addFilterBefore(validateCodeFilter,UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
                 //配置表单登录页面

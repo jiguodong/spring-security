@@ -15,4 +15,5 @@ public class ImageCodeProperties {
     private int expireIn = 60;
     private int width = 67;
     private int height = 23;
+    private String url;
 }
